@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container py-5">
+  <h1 class="text-center mt-4">Profile: {{ user.username }}</h1>
+  <div class="content py-4">
+    {% if user.is_superuser %}
+    <h2 class="alert alert-success text-center">With administrator rights</h2>
+    {% else %}
+    <h2 class="alert alert-warning text-center">No admin rights</h2>
+    {% endif %}
+  </div>
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <h3 class="mb-3">User information</h3>
+<div class="list-group">
+    <h4 class="list-group-item mb-3">User: {{ user.username }}</h4>
+    <h4 class="list-group-item mb-3">Name: {{ user.first_name }}</h4>
+    <h4 class="list-group-item mb-3">Surname: {{ user.last_name }}</h4>
+    <h4 class="list-group-item mb-3">Email: {{ user.email }}</h4>
+</div>
+    <a href="{% url 'account:password_change' %}">Change Password</a>
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+        <h4{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <h3 class="mb-3">Edit profile</h3>
+    <form method="post">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nameUser" name="username" value="{{ user.username }}">
+        <label for="nameUser">login</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="emailUser" name="email" value="{{ user.email }}">
+      <label for="emailUser">email</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="first_nameUser" name="first_name" value="{{ user.first_name }}">
+    <label for="first_nameUser">name user</label>
+</div>
+<div class="form-floating mb-3">
+  <input type="text" class="form-control" id="last_nameUser" name="last_name" value="{{ user.last_name }}">
+  <label for="last_nameUser">surname user</label>
+</div>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-info mt-3">Update</button>
+  </form> 
+  </div>
+</div>  
+</div>
+{% endblock %}
+  

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container d-flex flex-wrap">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav me-auto">
+      <li class="nav-item"><a href="{% url 'homeapp:homepage' %}" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="{% url 'blog:blog' %}" class="nav-link link-dark px-2">Blog</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+    <ul class="nav">
+      <li class="nav-item"><a href="{% url 'account:profileuser' %}" class="nav-link link-dark px-2">Profile</a></li>
+      {% if user.is_superuser %}
+      <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link link-dark px-2">Admin</a></li>
+      {% endif %}
+    </ul>
+    {% else %}
+    <ul class="nav">
+      <li class="nav-item"><a href="{% url 'account:loginuser' %}" class="nav-link link-dark px-2">Login</a></li>
+      <li class="nav-item"><a href="{% url 'account:signupuser' %}" class="nav-link link-dark px-2">Sign up</a></li>
+    </ul>
+    {% endif %}
+
+  </div>
+  </div>
+</nav>

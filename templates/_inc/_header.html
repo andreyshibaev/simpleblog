@@ -1,0 +1,12 @@
+<header>
+  <div class="container">
+    <div class="d-flex justify-content-end">
+ {% if user.is_authenticated %}
+     <form action="{% url 'account:logoutuser' %}" method="post" class="py-3">
+    {% csrf_token %}
+    <span class="badge rounded-pill bg-success fs-5">Hello {{ user.username }}</span> <button type="submit" class="badge rounded-pill bg-danger fs-6">Logout</button>
+  </form>
+{% endif %}
+   </div> 
+  </div>
+</header>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ detail_post.title }}
+{% endblock title %}
+{% block content %}
+<div class="container py-5">
+<h1>{{ detail_post.title }}</h1>
+<p class="badge bg-success">Category: {{ detail_post.category }}</p>
+<hr>
+{% if detail_post.photo %}
+<div class="photo mb-3">
+    <img src="{{ detail_post.photo.url }}" alt="{{ detail_post.title }}" style="width:250px;">
+</div>
+{% else %}
+<img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?cs=srgb&dl=pexels-luis-gomes-546819.jpg&fm=jpg" alt="{{ post.title }}" style="width:250px;">
+{% endif %}
+<hr>
+<div class="content">
+    {{ detail_post.content }}
+</div>
+</div>
+{% endblock content %}

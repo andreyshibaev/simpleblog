@@ -1,0 +1,10 @@
+<div class="sidebar">
+    <div class="list-group shadow rounded">
+  <a href="{% url 'blog:blog' %}" class="list-group-item list-group-item-action" aria-current="true">All posts</a>
+       {% for item in categories %}
+     <div class="link_category">
+        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action" aria-current="true">{{ item.name_category }}</a>
+     </div>
+     {% endfor %} 
+    </div>
+</div> 
